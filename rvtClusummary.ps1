@@ -46,8 +46,6 @@ Foreach($vCenter_vinfo_file in gci -path $basepath -Recurse | where {$_.Name -eq
                     $cluster_hw = $vcenter_vhost_data | where {$_.cluster -eq $cluster.cluster}
                     $cluster_cores = ($cluster_hw | Measure-Object -Property "# Cores" -Sum).sum
                 }
-                #$ratio = [Math]::Round($row.vCPUs / $row.HwCores, 0)
-                
                 #Establish CSV volume headers and insert values.
                 $row = "" | Select vCenter, Cluster, vCPUs, vRAMGiB, vProvGiB, vInUseGiB, HWCores, Hosts, CoresPerHost, vCPU:Core
                 $row.vCenter = ($vCenter_vInfo_data[1].'VI SDK Server').split(".")[0]
